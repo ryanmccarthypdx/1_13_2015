@@ -1,11 +1,11 @@
 class Job
   @@all_jobs = []
 
-  define_method(:initialize) do |title, date_range, main_resp|
-    @title = title
-    @date_range = date_range
+  define_method(:initialize) do |job_name, job_title, main_resp|
+    @job_name = job_name
+    @job_title = job_title
     @main_resp = main_resp
-    @job_data = [@title, @date_range, @main_resp]
+    @job_data = [@job_name, @job_title, @main_resp]
   end
 
   define_method(:summary) do
