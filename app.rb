@@ -24,21 +24,23 @@ get('/job_form') do
   erb(:job_form)
 end
 
-get('/job_result') do
+post('/job_result') do
   @job_name = params.fetch('job_name')
   @job_title = params.fetch('job_title')
   @job_resp = params.fetch('job_resp')
   job = Job.new(@job_name, @job_title, @job_resp)
   job.save()
+  erb(:job_result)
 end
 
-get('/job_delete') do
-  @job_to_delete = params.fetch('job_to_delete')
+post('/job_delete') do
+  job_to_delete = params.fetch('job_to_delete')
+  @job_to_delete = job_to_delete.to_i()
   Job.delete(@job_to_delete)
   erb(:job_delete)
 end
 
-get('/delete_all_jobs') do
+post('/delete_all') do
   Job.clear()
   erb(:delete_all)
 end

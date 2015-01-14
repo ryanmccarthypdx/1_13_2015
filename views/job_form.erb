@@ -4,7 +4,11 @@
 <br />
 <ol>
   <% @job_list.each() do |job| %>
-  <li><%= job.summary() %></li>
+    <% array = job.summary() %>
+    <% jobname = array[0] %>
+    <% jobtitle = array [1] %>
+    <% jobresp = array[2] %>
+  <li>You worked at <%= jobname %> as a <%= jobtitle %>, working primarily on <%= jobresp %></li>
   <% end %>
 </ol>
 <br />
