@@ -2,16 +2,43 @@ require('sinatra')
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
 require('./lib/places_been.rb')
+require('./lib/jobs.rb')
 
-get('/input_form') do
+get('/place_form') do
+  @title = "Places I've Been!"
   @places = Place.all()
-  erb(:form)
+  erb(:place_form)
 end
 
-
-post('/success') do
+post('/place_result') do
+  @title = "Success!"
   place_example = params.fetch("place_example")
   place = Place.new(place_example)
   place.save()
-  erb(:result)
+  erb(:place_result)
+end
+
+get('/job_form') do
+  @title = "Jobs I've Had"
+  @job_list = Job.all()
+  erb(:job_form)
+end
+
+get('/job_result') do
+  @job_name = params.fetch('job_name')
+  @job_title = params.fetch('job_title')
+  @job_resp = params.fetch('job_resp')
+  job = Job.new(@job_name, @job_title, @job_resp)
+  job.save()
+end
+
+get('/job_delete') do
+  @job_to_delete = params.fetch('job_to_delete')
+  Job.delete(@job_to_delete)
+  erb(:job_delete)
+end
+
+get('/delete_all_jobs') do
+  Job.clear()
+  erb(:delete_all)
 end

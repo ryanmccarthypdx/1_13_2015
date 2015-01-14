@@ -25,7 +25,7 @@ class Job
   end
 
   define_singleton_method(:delete) do |job_index|
-    @@all_jobs.delete_at(job_index)
+    @@all_jobs.delete_at((job_index.-(1)))
   end
 
 end

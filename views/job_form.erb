@@ -1,0 +1,44 @@
+<h1>Oh, the jobs you've had</h1>
+<br />
+<h3>Here are the jobs you've held:</h3>
+<br />
+<ol>
+  <% @job_list.each() do |job| %>
+  <li><%= job.summary() %></li>
+  <% end %>
+</ol>
+<br />
+<br />
+<h3>Log a job:</h3>
+
+<div class="row">
+  <div class="col-md-4">
+    <form action="/job_result" method="post">
+
+      <label for="job_name">Company Name:</label>
+      <input id="job_name" name="job_name" type="text" required="required">
+      <br />
+      <label for="job_title">Job Title:</label>
+      <input id="job_title" name="job_title" type="text" required="required">
+      <br />
+      <label for="job_resp">Major Responsibility:</label>
+      <input id="job_resp" name="job_resp" type="text" required="required">
+      <br />
+
+
+      <button type="submit" class="btn btn-primary">Add This Job!</button>
+    </form>
+  </div>
+</div>
+<br />
+<br />
+<h5>Delete an individual job</h5>
+<form action="/job_delete" method="post">
+  <input id="job_to_delete" name="job_to_delete" type="text" required="required">
+  <button type="submit" class="btn btn-warning">Delete job</button>
+</form>
+<br />
+<h5>To delete ALL jobs, click here:</h5>
+<form action="/delete_all" method="post">
+  <button type="submit" class="btn btn-danger">DELETE ALL</button>
+</form>
